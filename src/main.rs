@@ -1,7 +1,9 @@
 // 8bitグレースケールピクセルの長方形
 // 構造体を含む型の名前はCamelCaseを使う慣習
-struct GrayscaleMap {
+// デフォルトでプライベートのため、外部公開するにはキーワードpubを付ける
+pub struct GrayscaleMap {
     // フィールド名/メソッド名はsnake_case
+    // 型はパブリックでフィールドはプライベート（デフォルト）
     pixels: Vec<u8>,
     size: (usize, usize)
 }
