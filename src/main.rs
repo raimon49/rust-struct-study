@@ -13,6 +13,17 @@ fn new_map(size: (usize, usize), pixels: Vec<u8>) -> GrayscaleMap {
     GrayscaleMap { pixels, size }
 }
 
+struct Broom {
+    name: String,
+    height: u32,
+    health: u32,
+    position: (f32, f32, f32),
+    intent: BroomIntent
+}
+
+#[derive(Copy, Clone)]
+enum BroomIntent { FetchWater, DumpWater } // Broomができる2つの活動
+
 fn main() {
     let width = 1024;
     let height = 576;
