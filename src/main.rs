@@ -24,12 +24,20 @@ struct Broom {
 #[derive(Copy, Clone)]
 enum BroomIntent { FetchWater, DumpWater } // Broomができる2つの活動
 
+// 値としてBroomを受け取り、所有権を得る。
 fn chop(b: Broom) -> (Broom, Broom) {
+    // `broom1` の大半を変数 `b` から作り、高さだけを半分にする。
+    // StringはCopyではないので、 `broom1` は `b` の名前の所有権を得る。
     let mut broom1 = Broom { height: b.height / 2, .. b };
+
+    // `broom2` の大半を `broom1` から作る。StringはCopyでないので `name` を明示的にclone()する。
     let mut broom2 = Broom { name: broom1.name.clone(), .. broom1 };
+
+    // それぞれに別の名前を与える。
     broom1.name.push_str(" I");
     broom2.name.push_str(" II");
 
+    // 2つを返す。
     (broom1, broom2)
 }
 
