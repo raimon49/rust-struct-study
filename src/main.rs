@@ -48,4 +48,16 @@ fn main() {
 
     assert_eq!(image.size, (1024, 576));
     assert_eq!(image.pixels.len(), 1024 * 576);
+
+    let hokey = Broom {
+        name: "Hokey".to_string(),
+        height: 60,
+        health: 100,
+        position: (100.0, 200.0, 0.0),
+        intent: BroomIntent::FetchWater
+    };
+
+    let (hokey1, hokey2) = chop(hokey);
+    assert_eq!(hokey1.name, "Hokey I");
+    assert_eq!(hokey1.health, 100);
 }
