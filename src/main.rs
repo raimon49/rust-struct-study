@@ -21,7 +21,7 @@ struct Broom {
     intent: BroomIntent
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 enum BroomIntent { FetchWater, DumpWater } // Broomができる2つの活動
 
 // 値としてBroomを受け取り、所有権を得る。
@@ -60,6 +60,8 @@ fn main() {
     let (hokey1, hokey2) = chop(hokey);
     assert_eq!(hokey1.name, "Hokey I");
     assert_eq!(hokey1.health, 100);
+    assert_ne!(hokey1.intent, BroomIntent::DumpWater);
     assert_eq!(hokey2.name, "Hokey II");
     assert_eq!(hokey2.health, 100);
+    assert_ne!(hokey2.intent, BroomIntent::DumpWater);
 }
