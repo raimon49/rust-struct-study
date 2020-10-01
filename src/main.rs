@@ -60,4 +60,6 @@ fn main() {
     let (hokey1, hokey2) = chop(hokey);
     assert_eq!(hokey1.name, "Hokey I");
     assert_eq!(hokey1.health, 100);
+    assert_eq!(hokey2.name, "Hokey II");
+    assert_eq!(hokey2.health, 100);
 }
