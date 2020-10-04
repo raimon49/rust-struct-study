@@ -41,6 +41,10 @@ fn chop(b: Broom) -> (Broom, Broom) {
     (broom1, broom2)
 }
 
+// タプル型構造体
+// 型を定義すると自動的に生成用の関数が定義される（引数は通常のタプルと同じ）
+struct Bounds(pub usize, pub usize);
+
 fn main() {
     let width = 1024;
     let height = 576;
@@ -64,4 +68,7 @@ fn main() {
     assert_eq!(hokey2.name, "Hokey II");
     assert_eq!(hokey2.health, 100);
     assert_ne!(hokey2.intent, BroomIntent::DumpWater);
+
+    let image_bounds = Bounds(1024, 768);
+    assert_eq!(image_bounds.0 * image_bounds.1, 786432);
 }
