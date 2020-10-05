@@ -45,6 +45,10 @@ fn chop(b: Broom) -> (Broom, Broom) {
 // 型を定義すると自動的に生成用の関数が定義される（引数は通常のタプルと同じ）
 struct Bounds(pub usize, pub usize);
 
+// ユニット型構造体
+// 1つの値しか持たない型
+struct Onesuch;
+
 fn main() {
     let width = 1024;
     let height = 576;
@@ -71,4 +75,6 @@ fn main() {
 
     let image_bounds = Bounds(1024, 768);
     assert_eq!(image_bounds.0 * image_bounds.1, 786432);
+
+    let o = Onesuch;
 }
