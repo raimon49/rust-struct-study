@@ -49,6 +49,11 @@ struct Bounds(pub usize, pub usize);
 // 1つの値しか持たない型
 struct Onesuch;
 
+pub struct Queue {
+    order: Vec<char>,
+    younger: Vec<char>
+}
+
 fn main() {
     let width = 1024;
     let height = 576;
