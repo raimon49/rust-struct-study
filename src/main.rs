@@ -54,6 +54,12 @@ pub struct Queue {
     younger: Vec<char>
 }
 
+impl Queue {
+    pub fn pop(&mut self, c: char) {
+        self.younger.push(c);
+    }
+}
+
 fn main() {
     let width = 1024;
     let height = 576;
