@@ -50,7 +50,7 @@ struct Bounds(pub usize, pub usize);
 struct Onesuch;
 
 pub struct Queue {
-    order: Vec<char>,
+    older: Vec<char>,
     younger: Vec<char>
 }
 
