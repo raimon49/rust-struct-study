@@ -55,7 +55,7 @@ pub struct Queue {
 }
 
 impl Queue {
-    pub fn pop(&mut self, c: char) {
+    pub fn push(&mut self, c: char) {
         self.younger.push(c);
     }
 }
