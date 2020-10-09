@@ -102,4 +102,9 @@ fn main() {
     assert_eq!(image_bounds.0 * image_bounds.1, 786432);
 
     let _o = Onesuch;
+
+    let mut q = Queue { older: Vec::new(), younger: Vec::new() };
+    q.push('0');
+    q.push('1');
+    assert_eq!(q.pop(), Some('0'));
 }
