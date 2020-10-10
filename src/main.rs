@@ -107,4 +107,8 @@ fn main() {
     q.push('0');
     q.push('1');
     assert_eq!(q.pop(), Some('0'));
+    q.push('∞');
+    assert_eq!(q.pop(), Some('1'));
+    assert_eq!(q.pop(), Some('∞'));
+    assert_eq!(q.pop(), None);
 }
