@@ -76,6 +76,11 @@ impl Queue {
 
         self.older.pop()
     }
+
+    // selfを変更しないメソッド定義では共有参照（&mutでなく&）で宣言すればよい
+    pub fn is_empty(&self) -> bool {
+        self.older.is_empty() && self.younger.is_empty()
+    }
 }
 
 fn main() {
@@ -115,4 +120,7 @@ fn main() {
     assert_eq!(q.pop(), Some('1'));
     assert_eq!(q.pop(), Some('∞'));
     assert_eq!(q.pop(), None);
+    assert!(q.is_empty());
+    q.push('σ');
+    assert!(!q.is_empty());
 }
