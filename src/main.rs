@@ -54,7 +54,11 @@ pub struct Queue {
     younger: Vec<char>
 }
 
+// implブロックはfnによる関数定義の集合体
+// 構造体Queueに関連付けられた関数（associated function）と呼ばれる
+// 逆にimplブロックの外で定義されたものは自由関数（free function）と呼ばれる
 impl Queue {
+    // メソッドの第1引数はself: &mut Queueだが型は自明なため省略可能
     pub fn push(&mut self, c: char) {
         self.younger.push(c);
     }
@@ -104,7 +108,7 @@ fn main() {
     let _o = Onesuch;
 
     let mut q = Queue { older: Vec::new(), younger: Vec::new() };
-    q.push('0');
+    q.push('0'); // pushメソッド定義により、暗黙的には(&mut q).push(...)として変更可能参照が借用される
     q.push('1');
     assert_eq!(q.pop(), Some('0'));
     q.push('∞');
