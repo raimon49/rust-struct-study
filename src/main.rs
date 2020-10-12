@@ -81,6 +81,11 @@ impl Queue {
     pub fn is_empty(&self) -> bool {
         self.older.is_empty() && self.younger.is_empty()
     }
+
+    // メソッドがselfの所有権を取得する（引数を参照でなくする）
+    pub fn split(self) -> (Vec<char>, Vec<char>) {
+        (self.older, self.younger)
+    }
 }
 
 fn main() {
@@ -123,4 +128,8 @@ fn main() {
     assert!(q.is_empty());
     q.push('σ');
     assert!(!q.is_empty());
+
+    let (older, younger) = q.split(); // qの所有権はsplitメソッドに移動し、未定義状態となった
+    assert_eq!(older.len(), 0);
+    assert_eq!(younger.len(), 1);
 }
