@@ -86,6 +86,12 @@ impl Queue {
     pub fn split(self) -> (Vec<char>, Vec<char>) {
         (self.older, self.younger)
     }
+
+    // selfを引数に取らないメソッド定義はstatic method
+    // コンストラクタ関数にnewと名前を付けるのはRustの慣習
+    pub fn new() -> Queue {
+        return Queue { older: Vec::new(), younger: Vec::new() };
+    }
 }
 
 fn main() {
@@ -117,7 +123,7 @@ fn main() {
 
     let _o = Onesuch;
 
-    let mut q = Queue { older: Vec::new(), younger: Vec::new() };
+    let mut q = Queue::new();
     q.push('0'); // pushメソッド定義により、暗黙的には(&mut q).push(...)として変更可能参照が借用される
     q.push('1');
     assert_eq!(q.pop(), Some('0'));
