@@ -89,7 +89,9 @@ impl<T> Queue<T> {
 
     // selfを引数に取らないメソッド定義はstatic method
     // コンストラクタ関数にnewと名前を付けるのはRustの慣習
-    pub fn new() -> Queue<T> {
+    pub fn new() -> Self {
+    // キーワードSelfで戻り値Queue<T>を省略可能
+    // pub fn new() -> Queue<T> {
         return Queue { older: Vec::new(), younger: Vec::new() };
     }
 }
