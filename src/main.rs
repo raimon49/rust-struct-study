@@ -49,21 +49,21 @@ struct Bounds(pub usize, pub usize);
 // 1つの値しか持たない型
 struct Onesuch;
 
-pub struct Queue {
-    older: Vec<char>,
-    younger: Vec<char>
+pub struct Queue<T> {
+    older: Vec<T>,
+    younger: Vec<T>
 }
 
 // implブロックはfnによる関数定義の集合体
 // 構造体Queueに関連付けられた関数（associated function）と呼ばれる
 // 逆にimplブロックの外で定義されたものは自由関数（free function）と呼ばれる
-impl Queue {
+impl<T> Queue<T> {
     // メソッドの第1引数はself: &mut Queueだが型は自明なため省略可能
-    pub fn push(&mut self, c: char) {
-        self.younger.push(c);
+    pub fn push(&mut self, t: T) {
+        self.younger.push(t);
     }
 
-    pub fn pop(&mut self) -> Option<char> {
+    pub fn pop(&mut self) -> Option<T> {
         if self.older.is_empty() {
             if self.younger.is_empty() {
                 return None;
@@ -83,13 +83,13 @@ impl Queue {
     }
 
     // メソッドがselfの所有権を取得する（引数を参照でなくする）
-    pub fn split(self) -> (Vec<char>, Vec<char>) {
+    pub fn split(self) -> (Vec<T>, Vec<T>) {
         (self.older, self.younger)
     }
 
     // selfを引数に取らないメソッド定義はstatic method
     // コンストラクタ関数にnewと名前を付けるのはRustの慣習
-    pub fn new() -> Queue {
+    pub fn new() -> Queue<T> {
         return Queue { older: Vec::new(), younger: Vec::new() };
     }
 }
@@ -138,4 +138,8 @@ fn main() {
     let (older, younger) = q.split(); // qの所有権はsplitメソッドに移動し、未定義状態となった
     assert_eq!(older.len(), 0);
     assert_eq!(younger.len(), 1);
+
+    let mut r = Queue::new(); // ジェネリック化したのでchar以外のf64なども格納できる
+    r.push(0.74);
+    r.push(2737.7);
 }
