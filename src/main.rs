@@ -96,6 +96,11 @@ impl<T> Queue<T> {
     }
 }
 
+struct Extrema<'elt> {
+    greatest: &'elt i32,
+    least: &'elt i32
+}
+
 fn main() {
     let width = 1024;
     let height = 576;
