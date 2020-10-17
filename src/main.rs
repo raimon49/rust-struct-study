@@ -96,12 +96,15 @@ impl<T> Queue<T> {
     }
 }
 
+// 任意の生存期間'eltに対して、生存期間が'eltの参照を保持することができる構造体
 struct Extrema<'elt> {
     greatest: &'elt i32,
     least: &'elt i32
 }
 
 fn find_extrema<'s>(slice: &'s [i32]) -> Extrema<'s> {
+// 返り値の型と引数が同じ生存期間を使うことが一般的なので、明らかに候補が1つしかない場合、関数シグニチャでは省略も可能
+// fn find_extrema(slice: &[i32]) -> Extrema {
     let mut greatest = &slice[0];
     let mut least = &slice[0];
     for i in 1..slice.len() {
@@ -160,4 +163,9 @@ fn main() {
     let mut r = Queue::new(); // ジェネリック化したのでchar以外のf64なども格納できる
     r.push(0.74);
     r.push(2737.7);
+
+    let a = [0, -3, 0, 15, 48];
+    let e = find_extrema(&a);
+    assert_eq!(*e.least, -3);
+    assert_eq!(*e.greatest, 48);
 }
