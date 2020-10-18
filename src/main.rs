@@ -115,6 +115,12 @@ fn find_extrema<'s>(slice: &'s [i32]) -> Extrema<'s> {
     Extrema { greatest, least }
 }
 
+#[derive(Copy, Clone, Debug, PartialEq)]
+struct Point {
+    x: f64,
+    y: f64
+}
+
 fn main() {
     let width = 1024;
     let height = 576;
