@@ -174,4 +174,7 @@ fn main() {
     let e = find_extrema(&a);
     assert_eq!(*e.least, -3);
     assert_eq!(*e.greatest, 48);
+
+    let p = Point { x: 10.0, y: 50.0 };
+    println!("{:?}", p); // #[derive(Debug)]によりdebug pring可能
 }
