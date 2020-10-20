@@ -121,6 +121,11 @@ struct Point {
     y: f64
 }
 
+pub struct SpiderRobot {
+    species: String,
+    web_enabled: bool
+}
+
 fn main() {
     let width = 1024;
     let height = 576;
