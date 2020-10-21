@@ -1,3 +1,6 @@
+use std::rc::Rc;
+use std::cell::Cell;
+
 // 8bitグレースケールピクセルの長方形
 // 構造体を含む型の名前はCamelCaseを使う慣習
 // デフォルトでプライベートのため、外部公開するにはキーワードpubを付ける
@@ -121,9 +124,16 @@ struct Point {
     y: f64
 }
 
+// ロボットの設定値
 pub struct SpiderRobot {
     species: String,
-    web_enabled: bool
+    web_enabled: bool,
+    hardware_error_count: Cell<u32> // mutでないメソッドからもアクセスして内部を可変にできる
+}
+
+// ロボットの設定値を起動時に持ち、値は変わらない
+pub struct SpiderSenses {
+    robot: Rc<SpiderRobot> // 参照カウントRcに収められた値は常に共有可能で不変
 }
 
 fn main() {
