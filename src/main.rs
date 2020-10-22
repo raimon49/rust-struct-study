@@ -131,6 +131,17 @@ pub struct SpiderRobot {
     hardware_error_count: Cell<u32> // mutでないメソッドからもアクセスして内部を可変にできる
 }
 
+impl SpiderRobot {
+    pub fn add_hardware_error(&self) {
+        let n = self.hardware_error_count.get();
+        self.hardware_error_count.set(n + 1);
+    }
+
+    pub fn has_hardware_errors(&self) -> bool {
+        self.hardware_error_count.get() > 0
+    }
+}
+
 // ロボットの設定値を起動時に持ち、値は変わらない
 pub struct SpiderSenses {
     robot: Rc<SpiderRobot> // 参照カウントRcに収められた値は常に共有可能で不変
