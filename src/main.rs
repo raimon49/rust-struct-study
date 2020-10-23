@@ -1,5 +1,7 @@
 use std::rc::Rc;
 use std::cell::Cell;
+use std::cell::RefCell;
+use std::fs::File;
 
 // 8bitグレースケールピクセルの長方形
 // 構造体を含む型の名前はCamelCaseを使う慣習
@@ -128,7 +130,8 @@ struct Point {
 pub struct SpiderRobot {
     species: String,
     web_enabled: bool,
-    hardware_error_count: Cell<u32> // mutでないメソッドからもアクセスして内部を可変にできる
+    hardware_error_count: Cell<u32>, // mutでないメソッドからもアクセスして内部を可変にできる
+    log_file: RefCell<File>
 }
 
 impl SpiderRobot {
