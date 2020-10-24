@@ -2,6 +2,7 @@ use std::rc::Rc;
 use std::cell::Cell;
 use std::cell::RefCell;
 use std::fs::File;
+use std::io::Write;
 
 // 8bitグレースケールピクセルの長方形
 // 構造体を含む型の名前はCamelCaseを使う慣習
@@ -142,6 +143,13 @@ impl SpiderRobot {
 
     pub fn has_hardware_errors(&self) -> bool {
         self.hardware_error_count.get() > 0
+    }
+
+    pub fn log(&self, message: &str) {
+        // ref_cellからRefMut<T>を取り出す
+        // 値が既に借用されていた時はパニックを起こすため、ブロックの中でそれぞれ呼ぶ
+        let mut file = self.log_file.borrow_mut();
+        writeln!(file, "{}", message).unwrap();
     }
 }
 
